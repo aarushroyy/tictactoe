@@ -1,6 +1,5 @@
 from gui import TicTacToeApp
 from bots.minimax_bot import MinimaxBot
-from bots.rl_bot import RLBot
 
 def main():
     # Create the application

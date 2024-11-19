@@ -1,5 +1,4 @@
 from bots.minimax_bot import MinimaxBot
-from bots.rl_bot import RLBot
 
 class TicTacToe:
     def __init__(self):
@@ -111,10 +110,8 @@ def create_bot(bot_type, difficulty):
     """Factory function to create bots"""
     if bot_type.lower() == 'minimax':
         return MinimaxBot(difficulty)
-    elif bot_type.lower() == 'rl':
-        return RLBot(difficulty)
     else:
-        raise ValueError("Invalid bot type. Choose 'minimax' or 'rl'")
+        raise ValueError("Invalid bot type. Only 'minimax' is supported")
 
 def main():
     while True:
@@ -132,10 +129,10 @@ def main():
         game = TicTacToe()
         
         if choice == '1':
-            print("\nSelect bot type:")
-            print("1. Minimax Bot")
-            print("2. Reinforcement Learning Bot")
-            bot_choice = input("Enter choice (1-2): ")
+            # print("\nSelect bot type:")
+            # print("1. Minimax Bot")
+            # print("2. Reinforcement Learning Bot")
+            # bot_choice = input("Enter choice (1-2): ")
             
             print("\nSelect difficulty:")
             print("1. Easy")
@@ -145,7 +142,7 @@ def main():
             
             # Convert difficulty choice to string
             difficulty_map = {'1': 'easy', '2': 'medium', '3': 'hard'}
-            bot_type = 'minimax' if bot_choice == '1' else 'rl'
+            bot_type = 'minimax' 
             
             bot = create_bot(bot_type, difficulty_map[difficulty])
             game.play_game('human', bot)
@@ -158,9 +155,9 @@ def main():
             
             # Bot 1 setup
             print("\nBot 1:")
-            print("1. Minimax Bot")
-            print("2. Reinforcement Learning Bot")
-            bot1_choice = input("Enter choice (1-2): ")
+            # print("1. Minimax Bot")
+            # print("2. Reinforcement Learning Bot")
+            # bot1_choice = input("Enter choice (1-2): ")
             print("\nSelect difficulty:")
             print("1. Easy")
             print("2. Medium")
@@ -169,9 +166,9 @@ def main():
             
             # Bot 2 setup
             print("\nBot 2:")
-            print("1. Minimax Bot")
-            print("2. Reinforcement Learning Bot")
-            bot2_choice = input("Enter choice (1-2): ")
+            # print("1. Minimax Bot")
+            # print("2. Reinforcement Learning Bot")
+            # bot2_choice = input("Enter choice (1-2): ")
             print("\nSelect difficulty:")
             print("1. Easy")
             print("2. Medium")
@@ -179,8 +176,8 @@ def main():
             bot2_diff = input("Enter difficulty (1-3): ")
             
             difficulty_map = {'1': 'easy', '2': 'medium', '3': 'hard'}
-            bot1_type = 'minimax' if bot1_choice == '1' else 'rl'
-            bot2_type = 'minimax' if bot2_choice == '1' else 'rl'
+            bot1_type = 'minimax'
+            bot2_type = 'minimax' 
             
             bot1 = create_bot(bot1_type, difficulty_map[bot1_diff])
             bot2 = create_bot(bot2_type, difficulty_map[bot2_diff])

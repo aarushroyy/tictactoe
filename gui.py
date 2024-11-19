@@ -3,7 +3,6 @@ from tkinter import font
 from PIL import Image, ImageTk
 import random
 from bots.minimax_bot import MinimaxBot
-from bots.rl_bot import RLBot
 
 
 class matrix:
