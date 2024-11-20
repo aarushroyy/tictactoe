@@ -280,16 +280,16 @@ class GamePage(tk.Frame):
         self.mode = mode
         self.reset_game()
         
+        # Clear all bot instances first
+        self.bot1 = None
+        self.bot2 = None
+        
         if mode == "Player vs Bot":
-            self.bot1 = None
             self.bot2 = MinimaxBot(difficulty.lower())
         elif mode == "Bot vs Bot":
             self.bot1 = MinimaxBot(bot1_difficulty.lower())
             self.bot2 = MinimaxBot(bot2_difficulty.lower())
             self.after(1000, self.make_bot_move)
-        else:  # Player vs Player
-            self.bot1 = None
-            self.bot2 = None
         
         self.turn = "X"
         self.update_turn_label()
@@ -314,14 +314,13 @@ class GamePage(tk.Frame):
             return
 
         # Handle next move based on game mode
-        if self.mode == "Player vs Bot" and self.turn == "X":
-            self.turn = "O"
-            self.update_turn_label()
+        # First switch turns for all modes
+        self.turn = "O" if self.turn == "X" else "X"
+        self.update_turn_label()
+
+        # Then only trigger bot move if it's Player vs Bot mode and bot's turn
+        if self.mode == "Player vs Bot" and self.turn == "O":
             self.after(500, self.make_bot_move)
-        else:
-            # Player vs Player or after bot's move
-            self.turn = "O" if self.turn == "X" else "X"
-            self.update_turn_label()
 
     def make_bot_move(self):
         """Execute bot moves only when in bot modes"""
